@@ -25,6 +25,9 @@ def createCategories(request):
     if request.method == 'POST':
         try:
             category_data = JSONParser().parse(request)
+            name = category_data.get('Name')
+            if Category.objects.filter(Name=name).exists():
+                return JsonResponse({"error": "A category with this name already exists."})
             category_serializer = CategorySerializer(data=category_data)
             if category_serializer.is_valid():
                 category_serializer.save()
@@ -39,7 +42,12 @@ def editCategory(request):
     if request.method == 'PUT':
         try:
             category_data = JSONParser().parse(request)
-            category = Category.objects.get(id=category_data['id'])
+            category = Category.objects.get(ID=category_data['ID'])
+            new_name = category_data.get('Name')
+            if category.Name == new_name:
+                return JsonResponse({"error": "The new name is the same as the old one."})
+            if Category.objects.filter(Name=new_name).exists():
+                return JsonResponse({"error": "A category with this name already exists."})
             category_serializer = CategorySerializer(category, data=category_data)
             if category_serializer.is_valid():
                 category_serializer.save()
@@ -53,7 +61,7 @@ def editCategory(request):
 def deleteCategory(request, id):
     if request.method == 'DELETE':
         try:
-            category = Category.objects.get(id=id)
+            category = Category.objects.get(ID=id)
             category.delete()
             return JsonResponse({"message": "Category deleted successfully!"})
         except Exception as e:

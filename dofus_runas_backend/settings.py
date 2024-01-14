@@ -81,9 +81,9 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dofuslink_db',
-        'USER': 'dofuslink',
-        'PASSWORD': 'UvYDyCa/V1P[qnw2',
+        'NAME': 'dofuslink_db_test',
+        'USER': 'dofuslink_test',
+        'PASSWORD': 'e89xWkadM_eR$2z',
         'HOST': 'mysql-dofuslink.alwaysdata.net',
         'PORT': '3306',
         'OPTIONS': {

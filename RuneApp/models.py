@@ -30,7 +30,7 @@ class Rune(models.Model):
     Name = models.CharField(max_length=100, null=False)
     Density = models.IntegerField(null=True)
     Level = models.IntegerField(null=False)
-    Efect = models.IntegerField(null=True)
+    Effect = models.IntegerField(null=True)
     Image = models.CharField(max_length=200)
     OverMax = models.IntegerField(null=True)
     Category = models.ForeignKey(Category, on_delete=models.CASCADE)
